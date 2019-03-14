@@ -81,3 +81,8 @@
 - CSDN：http://blog.csdn.net/carson_ho
 - 简书：http://www.jianshu.com/u/383970bef0a0
 - 稀土掘金：https://juejin.im/user/58d4d9781b69e6006ba65edc
+
+2019.3.14 知识结构图
+1.concat 与 concatArray 的区别（concat的区别是小于等于4个只能,而concatArray 大于4的都可以）
+
+

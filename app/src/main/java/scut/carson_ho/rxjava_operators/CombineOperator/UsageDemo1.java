@@ -132,7 +132,6 @@ public class UsageDemo1 extends AppCompatActivity {
         /**
          * concatArray: 组合多个观察者的合并（5以上及5个）
          */
-
         Observable.concatArray(Observable.just(1,2,3,5),
                 Observable.just(3,45,6,2,4),
                 Observable.just(3,45,67,2,0),
