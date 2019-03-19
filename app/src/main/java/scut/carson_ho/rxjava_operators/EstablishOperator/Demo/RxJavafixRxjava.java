@@ -20,7 +20,10 @@ import scut.carson_ho.rxjava_operators.R;
 
 /**
  * 实际场景中运用:适用于之前公司的拍卖系统，不断轮询，请求多次接口，获取最新价格
- * 实战系列：无条件轮询
+ * 实战系列：无条件轮询（不断请求服务器）
+ *
+ * Do操作符源码解析网址：
+ * https://www.jianshu.com/p/a14edc248cc8
  */
 
 public class RxJavafixRxjava extends AppCompatActivity {
@@ -37,6 +40,8 @@ public class RxJavafixRxjava extends AppCompatActivity {
          * 步骤1：采用interval（）延迟发送
          * 观察获取数据的顺序，就是从内向外发展,内部先请求数据，然后层层传递往外扩散
          * 设计思想：就是操作符之间干的事情了
+         * 源码解析：相当于给Observable在关键点添加回调，这就是在发送一个数字前，就发送网络请求
+         *
          **/
         Observable.interval(2,1, TimeUnit.SECONDS)
                 // 参数说明：
