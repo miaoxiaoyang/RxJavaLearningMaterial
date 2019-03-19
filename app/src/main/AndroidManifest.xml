@@ -18,6 +18,11 @@
         <activity android:name=".EstablishOperator.establishUsage">
         </activity>
         <activity android:name=".EstablishOperator.Demo.RxJavafixRxjava">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".FilterUsage">
@@ -26,11 +31,6 @@
         </activity>
 
         <activity android:name=".CombineOperator.UsageDemo1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CombineOperator.UsageDemo2">
         </activity>

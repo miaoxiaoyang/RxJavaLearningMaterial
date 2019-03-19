@@ -16,14 +16,14 @@ import io.reactivex.functions.Function3;
 import scut.carson_ho.rxjava_operators.R;
 
 /**
- * Created by Carson_Ho on 17/9/12.
+ * 实际场景中：就是多次输入框，联合起来一起判断，检查与否
  * 联合判断
+ *
  */
 
 public class UsageDemo3 extends AppCompatActivity {
 
     private String TAG = "RxJava";
-
 
     /*
      * 步骤1：设置控件变量 & 绑定

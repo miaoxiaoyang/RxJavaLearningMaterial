@@ -19,13 +19,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import scut.carson_ho.rxjava_operators.R;
 
 /**
- * Created by Carson_Ho on 17/9/8.
+ * 实际场景中运用:适用于之前公司的拍卖系统，不断轮询，请求多次接口，获取最新价格
  * 实战系列：无条件轮询
  */
 
 public class RxJavafixRxjava extends AppCompatActivity {
 
     private static final String TAG = "Rxjava";
+    private int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class RxJavafixRxjava extends AppCompatActivity {
 
         /*
          * 步骤1：采用interval（）延迟发送
+         * 观察获取数据的顺序，就是从内向外发展,内部先请求数据，然后层层传递往外扩散
+         * 设计思想：
          **/
         Observable.interval(2,1, TimeUnit.SECONDS)
                 // 参数说明：
@@ -45,11 +48,13 @@ public class RxJavafixRxjava extends AppCompatActivity {
                  /*
                   * 步骤2：每次发送数字前发送1次网络请求（doOnNext（）在执行Next事件前调用）
                   * 即每隔1秒产生1个数字前，就发送1次网络请求，从而实现轮询需求
+                  * 操作符中 doOnNext 轮询，设计思想就是
                   **/
                  .doOnNext(new Consumer<Long>() {
             @Override
             public void accept(Long integer) throws Exception {
-                Log.d(TAG, "第 " + integer + " 次轮询" );
+//                Log.d(TAG, "第 " + integer + " 次轮询" );
+                Log.i("doOnNext","第"+integer+"次轮询");//2
 
                  /*
                   * 步骤3：通过Retrofit发送网络请求
@@ -78,11 +83,14 @@ public class RxJavafixRxjava extends AppCompatActivity {
                             public void onNext(Translation result) {
                                 // e.接收服务器返回的数据
                                 result.show() ;
+                                i++;
+                                Log.i("doOnNext","第"+i+"次请求成功的回调");//1
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                Log.d(TAG, "请求失败");
+//                                Log.d(TAG, "请求失败");
+                                Log.i("doOnNext","请求失败");
                             }
 
                             @Override
@@ -90,7 +98,6 @@ public class RxJavafixRxjava extends AppCompatActivity {
 
                             }
                         });
-
             }
         }).subscribe(new Observer<Long>() {
             @Override
@@ -98,21 +105,22 @@ public class RxJavafixRxjava extends AppCompatActivity {
 
             }
             @Override
-            public void onNext(Long value) {
+            public void onNext(Long value) {//3
+                Log.i("doOnNext","第"+value+"轮询时间点");
 
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d(TAG, "对Error事件作出响应");
+//                Log.d(TAG, "对Error事件作出响应");
+                Log.i("doOnNext","对Error事件作出响应");
             }
 
             @Override
             public void onComplete() {
-                Log.d(TAG, "对Complete事件作出响应");
+//                Log.d(TAG, "对Complete事件作出响应");
+                Log.i("doOnNext","对Error事件作出响应");
             }
         });
-
-
     }
 }

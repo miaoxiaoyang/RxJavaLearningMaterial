@@ -351,12 +351,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //                });
 
-
-
-
-
-
-//
 //        // 1. 每1s发送1个数据 = 从0开始，递增1，即0、1、2、3
 //        Observable.interval(1, TimeUnit.SECONDS)
 //                // 2. 通过takeWhile传入一个判断条件

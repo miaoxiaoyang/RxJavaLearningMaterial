@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable;
 import scut.carson_ho.rxjava_operators.R;
 
 /**
- * Created by Carson_Ho on 17/9/12.
+ * 通过本地数据源和网络数据
  * 合并数据源 & 统一展示
  */
 
@@ -50,20 +50,24 @@ public class UsageDemo2 extends AppCompatActivity {
 
                     @Override
                     public void onNext(String value) {
-                        Log.d(TAG, "数据源有： "+ value  );
+//                        Log.d(TAG, "数据源有： "+ value  );
+                        //先是网络，后是本地
+                        Log.i("merge","数据源有： "+ value);
                         result += value + "+";
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
+//                        Log.d(TAG, "对Error事件作出响应");
+                        Log.i("merge","对Error事件作出响应");
                     }
 
                     // 接收合并事件后，统一展示
                     @Override
                     public void onComplete() {
-                        Log.d(TAG, "获取数据完成");
-                        Log.d(TAG,  result  );
+//                        Log.d(TAG, "获取数据完成");
+//                        Log.d(TAG,  result  );
+                        Log.i("merge","获取数据完成");
                     }
                 });
     }
