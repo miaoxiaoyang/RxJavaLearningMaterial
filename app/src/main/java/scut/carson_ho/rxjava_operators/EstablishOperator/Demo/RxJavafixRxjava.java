@@ -36,7 +36,7 @@ public class RxJavafixRxjava extends AppCompatActivity {
         /*
          * 步骤1：采用interval（）延迟发送
          * 观察获取数据的顺序，就是从内向外发展,内部先请求数据，然后层层传递往外扩散
-         * 设计思想：
+         * 设计思想：就是操作符之间干的事情了
          **/
         Observable.interval(2,1, TimeUnit.SECONDS)
                 // 参数说明：
